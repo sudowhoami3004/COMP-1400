@@ -1,27 +1,33 @@
 /*
-    Write a program to read input values for an integer array of size 15 and display the second largest integer
-    value in the array
+Write a program to read input values for an integer array of size 15 and display the second largest integer
+value in the array
 */
 
 #include <stdio.h>
 
-int main() {
-    int arr[15];
-    for (int i = 0; i < 15; i++) {
-        printf("Enter an integer value: ");
-        scanf("%d", &arr[i]);
-    }
-    
-    int largest = arr[0];
-    int secondLargest = arr[0];
-    for (int i = 1; i < 15; i++) {
-        if (arr[i] > largest) {
+int SecondLargest(int numbers[], int arraySize) {
+    int largest = numbers[0];
+    int secondLargest = numbers[0];
+    for (int i = 1; i < arraySize; i++) {
+        if (numbers[i] > largest) {
             secondLargest = largest;
-            largest = arr[i];
-        } else if (arr[i] > secondLargest && arr[i] != largest) {
-            secondLargest = arr[i];
+            largest = numbers[i];
+        } else if (numbers[i] > secondLargest && numbers[i] != largest) {
+            secondLargest = numbers[i];
         }
     }
-    
-    printf("Second largest integer value in the array is: %d\n", secondLargest);
+
+    return secondLargest;
+}
+
+int main(void) {
+    int arraySize = 15;
+    int numbers[arraySize];
+    for (int i = 0; i < 15; i++) {
+        printf("(%d) Enter an integer: ", i);
+        scanf("%d", &numbers[i]);
+    }
+
+    int result = SecondLargest(numbers, arraySize);
+    printf("Second largest integer in the array is: %d", result);
 }

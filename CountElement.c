@@ -1,36 +1,36 @@
 /*
-    Write a function that receives an array of integers, and its size. The function should print out each unique
-    element and its frequency to the screen.
+Write a function that receives an array of integers, and its size. The function should print out each unique
+element and its frequency to the screen
 */
 
 #include <stdio.h>
 
-void FrequencyOfElements(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        int count = 1;
-        for (int j = i + 1; j < size; j++) {
-            if (arr[i] == arr[j]) {
-                count++;
-                arr[j] = -1;
+void FrequencyOfElements(int numbers[], int arraySize) {
+    printf("Elements----------Frequency\n");
+    for (int i = 0; i < arraySize; i++) {
+        if (numbers[i] == -1) continue;
+        
+        int frequency = 1;
+        for (int j = i + 1; j < arraySize; j++) {
+            if (numbers[i] == numbers[j]) {
+                frequency++;
+                numbers[j] = -1;
             }
         }
-        
-        if (arr[i] != -1) {
-            printf("%d occurs %d times\n", arr[i], count);
-        }
+        printf("%d-----------------%d\n", numbers[i], frequency);
     }
 }
 
-int main() {
-    int size;
+int main(void) {
+    int arraySize;
     printf("Enter the size of the array: ");
-    scanf("%d", &size);
-
-    int arr[size];
-    printf("Enter %d integers for the array:\n", size);
-    for (int i = 0; i < size; i++) {
-        scanf("%d", &arr[i]);
+    scanf("%d", &arraySize);
+    int numbers[arraySize];
+    
+    for (int i = 0; i < arraySize; i++) {
+        printf("(%d) Enter an integer: ", i);
+        scanf("%d", &numbers[i]);
     }
 
-    FrequencyOfElements(arr, size);
+    FrequencyOfElements(numbers, arraySize);
 }

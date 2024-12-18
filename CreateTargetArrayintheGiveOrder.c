@@ -18,36 +18,53 @@
 
 #include <stdio.h>
 
-void CreateTargetArray(int nums[], int index[], int size, int target[]) {
-    for (int i = 0; i < size; i++) {
-        for (int j = size - 1; j > index[i]; j--) {
-            target[j] = target[j - 1];
+void CreateTargetArray(int nums[], int index[], int size) {
+    int target[100]; // Assuming a maximum size of 100 for simplicity
+    int i, j;
+
+    // Keep track of the current length of the target array
+    int currentLength = 0;
+
+    for (i = 0; i < size; i++) {
+        // If the insertion index is less than the current length, shift elements to the right
+        if (index[i] < currentLength) {
+            for (j = currentLength; j > index[i]; j--) {
+                target[j] = target[j - 1];
+            }
         }
+        // Insert the current number at the specified index
         target[index[i]] = nums[i];
+        currentLength++;
     }
+
+    // Print the target array
+    printf("Target array: [");
+    for (i = 0; i < size; i++) {
+        printf("%d", target[i]);
+        if (i < size - 1) {
+            printf(", ");
+        }
+    }
+    printf("]\n");
 }
 
 int main() {
     int size;
-    printf("Enter the size of the array: ");
+    printf("Enter the size of the arrays: ");
     scanf("%d", &size);
 
-    int nums[size], index[size];
-    printf("Enter %d integers for the nums array:\n", size);
+    int nums[100]; // Assuming a maximum size of 100 for simplicity
+    int index[100];
+
+    printf("Enter elements of nums array: ");
     for (int i = 0; i < size; i++) {
         scanf("%d", &nums[i]);
     }
 
-    printf("Enter %d integers for the index array:\n", size);
+    printf("Enter elements of index array: ");
     for (int i = 0; i < size; i++) {
         scanf("%d", &index[i]);
     }
 
-    int target[size];
-    CreateTargetArray(nums, index, size, target);
-    printf("Target array is: ");
-    for (int i = 0; i < size; i++) {
-        printf("%d ", target[i]);
-    }
-    printf("\n");
+    CreateTargetArray(nums, index, size);
 }

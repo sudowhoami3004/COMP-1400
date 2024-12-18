@@ -1,21 +1,25 @@
 /*
-    Write a C function that takes as input an integer number, n, and displays the sum of integer numbers from
-    1 to n-1. For example, n= 5, output: 10 (4+3+2+1
+Write a C function that takes as input an integer number, n, and displays the sum of integer numbers from
+1 to n-1. For example, n= 5, output: 10 (4+3+2+1)
 */
 
 #include <stdio.h>
 
-void SumOfIntegers(int n) {
+int SumOfIntegers(int number) {
     int sum = 0;
-    for (int i = n - 1; i > 0; i--) {
+    for (int i = number - 1; i > 0; i--) {
         sum += i;
     }
-    printf("Sum of integers from 1 to %d is: %d\n", n, sum);
+
+    return sum;
 }
 
 int main() {
-    int n;
+    int number;
     printf("Enter an integer number: ");
-    scanf("%d", &n);
-    SumOfIntegers(n);
+    scanf("%d", &number);
+
+    int result = SumOfIntegers(number);
+
+    printf("Sum of integers from 1 to %d is: %d", number, result);
 }
